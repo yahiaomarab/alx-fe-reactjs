@@ -8,6 +8,12 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegistrationForm = () => {
+
+    const [formData, setFormData] = useState({
+      username: '',
+      email: '',
+      password: ''
+    })
   return (
     <Formik
       initialValues={{
@@ -25,7 +31,7 @@ const RegistrationForm = () => {
           {" "}
           {/* Ensure this is returned */}
           <div>
-            <Field type="text" name="username" placeholder="Username" />
+            <Field type="text" name="username" value={formData.username}  placeholder="Username" />
             <ErrorMessage
               name="username"
               component="div"
@@ -33,7 +39,7 @@ const RegistrationForm = () => {
             />
           </div>
           <div>
-            <Field type="email" name="email" placeholder="Email" />
+            <Field type="email" name="email" value={formData.email} placeholder="Email" />
             <ErrorMessage
               name="email"
               component="div"
@@ -41,7 +47,7 @@ const RegistrationForm = () => {
             />
           </div>
           <div>
-            <Field type="password" name="password" placeholder="Password" />
+            <Field type="password" name="password" value={formData.password} placeholder="Password" />
             <ErrorMessage
               name="password"
               component="div"
