@@ -6,12 +6,14 @@ const fetchPosts = async () => {
 };
 
 function PostsComponent() {
-  const { data, error, isError, isLoading, isFetching, refetch } = useQuery({
-    queryKey: ["posts"],
-    queryFn: fetchPosts,
-    staleTime: 60000, // Cache for 60 seconds
-    refetchOnWindowFocus: true, // Auto-refetch on tab focus
-  });
+    const { data, error, isError, isLoading, isFetching, refetch } = useQuery({
+        queryKey: ["posts"],
+        queryFn: fetchPosts,
+        staleTime: 60000, // Cache data for 60 seconds
+        cacheTime: 300000, // Keep data in cache for 5 minutes (default)
+        keepPreviousData: true, // Prevents UI flicker when refetching
+        refetchOnWindowFocus: true, // Auto-refetch on tab focus
+      });
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
 
