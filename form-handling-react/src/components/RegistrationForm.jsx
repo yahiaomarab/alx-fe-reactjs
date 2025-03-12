@@ -1,47 +1,52 @@
 import { useState } from "react";
+
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "username") setUsername(value);
+    else if (name === "email") setEmail(value);
+    else if (name === "password") setPassword(value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.username || !formData.email || !formData.password) {
+    if (!username || !email || !password) {
       alert("Please fill in all fields.");
       return;
     }
-    console.log(formData);
+    console.log({ username, email, password });
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
         name="username"
         placeholder="Username"
-        value={formData.username}
+        value={username}
         onChange={handleChange}
       />
       <input
         type="email"
         name="email"
         placeholder="Email"
-        value={formData.email}
+        value={email}
         onChange={handleChange}
       />
       <input
         type="password"
         name="password"
         placeholder="Password"
-        value={formData.password}
+        value={password}
         onChange={handleChange}
       />
       <button type="submit">Register</button>
     </form>
   );
 };
+
 export default RegistrationForm;
