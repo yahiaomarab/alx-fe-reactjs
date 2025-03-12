@@ -1,66 +1,47 @@
 import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-
-const validationSchema = Yup.object().shape({
-  username: Yup.string().required("Username is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().required("Password is required"),
-});
-
 const RegistrationForm = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.username || !formData.email || !formData.password) {
+      alert("Please fill in all fields.");
+      return;
+    }
+    console.log(formData);
+  };
   return (
-    <Formik
-      initialValues={{ username, email, password }}
-      validationSchema={validationSchema}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-    >
-      {() => (
-        <Form>
-          <div>
-            <Field
-              type="text"
-              name="username"
-              value={username}  // Explicitly set value
-              onChange={(e) => setUsername(e.target.value)}  // Manually handle state update
-              placeholder="Username"
-            />
-            <ErrorMessage name="username" component="div" style={{ color: "red" }} />
-          </div>
-
-          <div>
-            <Field
-              type="email"
-              name="email"
-              value={email}  // Explicitly set value
-              onChange={(e) => setEmail(e.target.value)}  // Manually handle state update
-              placeholder="Email"
-            />
-            <ErrorMessage name="email" component="div" style={{ color: "red" }} />
-          </div>
-
-          <div>
-            <Field
-              type="password"
-              name="password"
-              value={password}  // Explicitly set value
-              onChange={(e) => setPassword(e.target.value)}  // Manually handle state update
-              placeholder="Password"
-            />
-            <ErrorMessage name="password" component="div" style={{ color: "red" }} />
-          </div>
-
-          <button type="submit">Register</button>
-        </Form>
-      )}
-    </Formik>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        value={formData.username}
+        onChange={handleChange}
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={handleChange}
+      />
+      <button type="submit">Register</button>
+    </form>
   );
 };
-
 export default RegistrationForm;
