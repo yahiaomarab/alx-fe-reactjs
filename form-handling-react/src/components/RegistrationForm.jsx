@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useState } from "react"; // Ensure useState is imported
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
@@ -8,51 +9,51 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegistrationForm = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-    const [formData, setFormData] = useState({
-      username: '',
-      email: '',
-      password: ''
-    })
   return (
     <Formik
-      initialValues={{
-        username: "",
-        email: "",
-        password: "",
-      }}
+      initialValues={formData}
       validationSchema={validationSchema}
       onSubmit={(values) => {
         console.log(values);
       }}
     >
-      {() => (
+      {({ values, handleChange }) => (
         <Form>
-          {" "}
-          {/* Ensure this is returned */}
           <div>
-            <Field type="text" name="username" value={formData.username}  placeholder="Username" />
-            <ErrorMessage
+            <Field
+              type="text"
               name="username"
-              component="div"
-              style={{ color: "red" }}
+              placeholder="Username"
+              value={values.username} // Controlled component setup
+              onChange={handleChange}
             />
+            <ErrorMessage name="username" component="div" style={{ color: "red" }} />
           </div>
           <div>
-            <Field type="email" name="email" value={formData.email} placeholder="Email" />
-            <ErrorMessage
+            <Field
+              type="email"
               name="email"
-              component="div"
-              style={{ color: "red" }}
+              placeholder="Email"
+              value={values.email}
+              onChange={handleChange}
             />
+            <ErrorMessage name="email" component="div" style={{ color: "red" }} />
           </div>
           <div>
-            <Field type="password" name="password" value={formData.password} placeholder="Password" />
-            <ErrorMessage
+            <Field
+              type="password"
               name="password"
-              component="div"
-              style={{ color: "red" }}
+              placeholder="Password"
+              value={values.password}
+              onChange={handleChange}
             />
+            <ErrorMessage name="password" component="div" style={{ color: "red" }} />
           </div>
           <button type="submit">Register</button>
         </Form>
