@@ -1,7 +1,6 @@
-import TaskForm from './components/TaskForm';
-import Snackbar from './components/Snackbar';
-import './App.css'
 import TodoList from './components/TodoList';
+import './App.css';
+
 const App = () => {
   return (
     <div className="flex justify-center items-center h-screen">
@@ -10,13 +9,11 @@ const App = () => {
           <h1 className="text-2xl font-semibold">Task Tracker</h1>
         </div>
         <div className="mb-4">
-          <TaskForm />
           <TodoList />
         </div>
-         <Snackbar />
       </div>
     </div>
   );
-}
+};
 
 export default App;
