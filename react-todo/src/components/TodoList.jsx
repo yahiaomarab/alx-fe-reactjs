@@ -29,7 +29,6 @@ function TodoList() {
 
   return (
     <div>
-      <h1>Todo List</h1>
       <input
         type="text"
         value={newTodo}
