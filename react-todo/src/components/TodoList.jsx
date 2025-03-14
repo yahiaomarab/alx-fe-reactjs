@@ -1,5 +1,5 @@
 import useTaskStore from "../stores/useTaskStore";
-const TaskList = () => {
+const TodoList = () => {
   const { tasks, removeTask, toggleTask } = useTaskStore();
   return (
     <div>
@@ -36,4 +36,4 @@ const TaskList = () => {
   );
 };
 
-export default TaskList;
+export default TodoList;

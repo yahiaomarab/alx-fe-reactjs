@@ -1,7 +1,7 @@
 import TaskForm from './components/TaskForm';
 import Snackbar from './components/Snackbar';
-import TaskList from './components/TaskList';
 import './App.css'
+import TodoList from './components/TodoList';
 const App = () => {
   return (
     <div className="flex justify-center items-center h-screen">
@@ -11,7 +11,7 @@ const App = () => {
         </div>
         <div className="mb-4">
           <TaskForm />
-          <TaskList />
+          <TodoList />
         </div>
          <Snackbar />
       </div>

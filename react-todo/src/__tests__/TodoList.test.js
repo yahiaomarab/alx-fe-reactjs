@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import TaskList from '../components/TaskList';
+import TaskList from '../components/TodoList';
 import TaskForm from '../components/TaskForm';
 import useTaskStore from '../stores/useTaskStore';
 
