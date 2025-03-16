@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+    purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"], // Remove unused styles
+    darkMode: "media", // Can be "media" (system-based) or "class" (manual toggle)
     theme: {
+      extend: {},
+    },
+    variants: {
       extend: {},
     },
     plugins: [],
