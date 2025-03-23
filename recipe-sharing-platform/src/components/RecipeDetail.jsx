@@ -39,6 +39,12 @@ function RecipeDetails() {
       <p className="text-gray-600">
         {recipe.description || "No description available."}
       </p>
+      <p className="text-gray-600">
+        <strong>Ingredients:</strong> {recipe.ingredients.join(", ")}
+      </p>
+      <p className="text-gray-600">
+        <strong>Instructions:</strong> {recipe.instructions}
+      </p>  
     </div>
   );
 }
