@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import RecipeDetails from "./components/RecipeDetail";
 import "./App.css";
 import HomePage from "./components/HomePage";
 
 function App() {
   return (
-    <div>
-      <HomePage />
-    </div>
+   <Router>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
+    </Routes>
+   </Router>
   );
 }
 

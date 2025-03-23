@@ -1,8 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-
 function HomePage() {
   const [data, setData] = useState(null);
-
+  const navigate = useNavigate(); 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,7 +20,7 @@ function HomePage() {
       {data ? (
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {data.map((item) => (
-            <li key={item.id} className="bg-white rounded-lg shadow-md p-4 align-center py-10">
+            <li key={item.id} onClick={() => navigate(`/recipe/${item.id}`)} className="bg-white rounded-lg shadow-md p-4 align-center py-10">
               <img
                 className="mb-4 w-24 h-24 sm:w-24 sm:h-24 md:w-36 md:h-36 rounded-full mx-auto transition-transform duration-300 ease-in-out hover:scale-110"
                 src={item.image}
